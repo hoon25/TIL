@@ -26,10 +26,14 @@
 
 ### 2. config 
 
-- `git config -global user.email "cchoon95@gmail.com"`
+- `git config --global user.email "cchoon95@gmail.com"`
   - 이메일의 경우 깃헙에 올릴 경우 잔디가 심어지는 기준이므로 정확하게 입력!
-- `git config -global user.name "Myname"`
+- `git config --global user.name "Myname"`
 - 최초에 한번만 하면된다.
+- `git config --global user.email `
+  -  이메일 이름확인 
+- `git config --local user.name `
+  - local은 해당 폴더에서만 설정 (global vs local)
 
 
 
