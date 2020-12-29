@@ -9,7 +9,7 @@
 ![image-20201229171429861](Git_image.assets/image-20201229171429861.png)
 
 - When Insert 변경
-  - /${filename}.assets 경로로 이미지 복사
+  - `/${filename}.assets` 경로로 이미지 복사
 - 로컬 이미지에 위 규칙을 적용 
 - 온라인 이미지에 위 규칙을 적용
 - 가능하다면 상대적 위치 사용
