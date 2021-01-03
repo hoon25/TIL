@@ -92,6 +92,7 @@
 
 - `.gitignore`파일을 생성 후 git으로 관리하고 싶지 않은 파일들을 저장 
 - [gitignore.io](https://gitignore.io)
+  - gitignore 목록 정리해놓은 사이트
 
 
 
@@ -124,11 +125,45 @@
 
 - 충돌이 발생한 경우 => 충돌을 해결하고 다시 add, commit, push
 
+
+
+## Fork
+
+### 1. Fork
+
+- 원하는 사이트에서 포크 후 코드 수정
+
+
+
+### 2. 클론
+
+- 클론 후 코드 수정
+
+
+
+### 3. Pull requests
+
+- 코드 수정 후 반영 요청
+
+
+
+## 파일 명명법
+
+### 1. Snake case 
+
+- snake_case
+
   
 
+### 2. Train case
+
+- train-case
 
 
 
+### 3. Pascal case
+
+- PascalCase
 
 
 
