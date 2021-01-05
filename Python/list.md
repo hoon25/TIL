@@ -5,8 +5,9 @@
 
 
 - list
-  - 순서o, 중복o, 수정o, 삭제 o
-
+  
+- 순서o, 중복o, 수정o, 삭제 o
+  
 - list 생성
 
   - ```python
@@ -58,3 +59,6 @@
     print('sum',sum(scoreData))
     print('mean',sum(scoreData)/len(scoreData))
     ```
+
+
+
