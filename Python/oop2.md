@@ -1,0 +1,105 @@
+# oop2
+
+>객체 지향 프로그래밍 심화개념 설명
+
+
+
+## 객체지향의 4가지 요소
+
+진정한 객체 지향이라면 아래의 4가지 요소가 잘 녹아져 나와야함
+
+- 상속(is ~ a)  	
+  - 자식이 부모보다 더 많은 기능,  파이썬은 다중상속을 지향함
+- 다형성 
+- 은닉화(정보은닉)
+- 추상화
+
+
+
+## 상속(inheritance)
+
+- 최상위 클래스는  `object`기입
+- `class class명(object):`
+
+```python
+class Person(object):
+```
+
+- 클래스의 부모 ()안에 기입
+- `super(). `부모의 생성자를 호출하는 작업
+
+```python 
+class StudentV0(Person)
+	def __init__(self, name, age, address, stuId):
+        super().__init__(name,age,adress) # 부모의 생성자를 받는 코드
+        self.stuID = stuID # 자식에서 만들어진 생성자
+```
+
+
+
+## 은닉화(encapsulation)
+
+- 정보은닉(information hiding) 이라고도 함 
+  -  critical 한 데이터에 대해서 수정 제거가 불가능하게 하는 것 
+- `self.__변수` 
+
+```python
+self.__year = 2021
+```
+
+- `self.__함수`
+
+```python
+def __getInfo(self):
+    return "__로 시작했기 때문에 해당 함수는 외부에서 접근이 되지 않는다."
+```
+
+
+
+## 다형성
+
+- 상위 클래스에 정의된 함수를 하위 클래스에서 해당 함수를 재정의(method overriding)
+- 부모클래스에서 정의된 함수명과 동일하게 하고, 자식클래스에서 함수 기능을 재정의
+
+
+
+## 다중상속
+
+- 여러 부모클래스에게 상속받을 수 있는 기능
+- `class class명(부모class01, 부모class02)`
+  - 앞에있는 부모class01이 우선 적용됨
+
+```python
+class Liger(Tiger,Lion)
+```
+
+
+
+## 추상클래스
+
+- 추상클래스는 객체 생성x
+- 추상메서드(함수)를 하나라도 가지면 추상클래스 
+- 함수구현을 강제하기 위해서 사용 
+  - 부모클래스가 추상클래스라면 자식은 그 추상함수들을 overriding 해야함
+- 추상클래스 사용을 위한 라이브러리
+
+```python
+from abc import *
+```
+
+- 추상클래스 생성
+
+```python
+class Base(metaclass = ABCMeta): # 추상클래스 
+    
+    @abstractmethod  
+    def study(self): # 추상함수
+        pass
+
+class Student(Base):
+    def study(self):  # 부모의 추상함수 overriding
+        print("공부하자!")
+```
+
+
+
