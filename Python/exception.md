@@ -1,4 +1,4 @@
-# excepion
+# exception
 
 > 예외 발생시 처리하는 구문
 
@@ -28,5 +28,33 @@ else :
     에러가 발생되지 않을 때 실행되는 블럭
 finally :
     무저건 수행
+```
+
+
+
+### 코드 작성
+
+```python
+def userKeyIn():
+    try :
+        age = int(input("본인의 나이를 입력하세요 : "))
+        print("예외 발생 이후 code")
+    except Exception as e : 
+        print('error =', e)
+        print("문자열이 아닌 정수를 입력해주세요")
+        userKeyIn()
+	else : 
+        print("age - ", age)
+        print("함수실행 종료")
+	finally : 
+        print("항상 나오는 함수")
+```
+
+
+
+### 강제 오류 발생
+
+```python
+raise InsuficientError("000내용")
 ```
 
