@@ -1,18 +1,6 @@
 # SELECT
 
-> select 구문에 대한 이해 
-
-
-
-### Rule
-
-- 명령어는 대문자를 사용
-- 데이터명은 대/소문자 구별
-
-```sql
-SELECT * 
-FROM EMPLOYEE;
-```
+> SELECT 구문에 대한 기초
 
 
 
