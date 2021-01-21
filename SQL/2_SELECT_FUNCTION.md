@@ -126,15 +126,149 @@ MONTHS_BETWEEN(date1, date2)
 
 
 
+## 데이터타입변환 함수
+
+### TO_CHAR
+
+NUMBER/DATE 타입을 CHARACTER 타입으로 변환하는 함수
+
+DATE 타입 변환
+
+- YYYY/YY/YEAR (4자리숫자/뒤 2자리숫자ㅏ)
+- MONTH/MON/MM/RM (이름/약어/숫자/로마 기호)
+
+- DDD/DD/D 일(1년 기준/ 1달 기준/ 1주 기준)
+
+- Q 분기(1,2,3,4)
+- DAY/DY 요일(이름/ 약어 이름)
+- HH(12), HH24 (12시간, 24시간)
+- AM|PM 오전, 오후
+- MI  분 (0~59)
+- SS 초 (0~59)
 
 
-### 
+
+NUMBER 타입 변환
+
+- `9` 자리수 지정
+- `0` 남는자리를 0으로 표시
+- `$` 또는 `L` 통화기호 표시
+- `.`또는 `,`  지정한 위치에 . 또는 , 표시
+- `EEEE` 과학 지수 표기법
+
+```SQL
+SELECT T0_CHAR(1234,'99999') --1234
+SELECT T0_CHAR(1234,'09999') --01234
+SELECT T0_CHAR(1234,'L99999') --\1234 
+SELECT T0_CHAR(1234,'99,999') --1,234 
+SELECT T0_CHAR(1234,'09,999') --01,234 
+SELECT T0_CHAR(1234,'9.9EEEE') --1.0E+03
+SELECT T0_CHAR(1234,'999') -- ####
+```
 
 
 
+### TO_DATE
+
+CHARACTER 타입을 DATE 타입으로 변환하는 함수
+
+```SQL
+TO_DATE(input_type,[format])
+TO_DATE('20100101','YYYYMMDD')
+```
 
 
 
+RR날짜 형식
+
+- 0-49 50-99 기준
+
+```SQL
+TO_CHAR(TO_DATE('95/10/27','RR/MM/DD'), 'RRRR/MM/DD') --1995/10/27
+```
 
 
+
+### NVL
+
+NULL을 지정한 값으로 변환하는 함수
+
+```SQL
+NVL(expr1, expr2)
+SELECT EMP_NAME, SALARY, NVL(BONUS_PCT,0)
+```
+
+
+
+## 단일 행 조건함수
+
+### DECODE
+
+SELECT 구문으로 IF-ELSE 논리를 제한적으로 구현한 오라클 DBMS 전용 함수
+
+```SQL
+DECODE(expr, search1, result1 [,searchN, resultN] [,default])
+DECODE(SUBSTR(EMP_NO,8,1),'1','남','3','남','여')
+DECODE(MGR_ID, NULL, '없음', MGR_ID) -- NULL값 처리 시 NVL 함수와 동일한 결과
+```
+
+
+
+### CASE
+
+DECODE 함수와 유사
+
+- ANSI 표준구문으로 더 많이 사용됨
+
+```SQL
+CASE expr WHEN search1 THEN result1 [WHEN.. THEN..][ELSE default] END
+CASE WHEN condition1 THEN result1 [WHEN.. THEN..][ELSE default] END
+
+SELECT CASE JOB_ID
+		WHEN 'J7' THEN TO_CHAR(SALARY * 1.1)
+		WHEN 'J6' THEN TO_CHAR(SALARY * 1.15)
+		ELSE TO_CHAR(SALARY*1.05) 
+		END AS 인상급여
+		
+SELECT CASE WHEN SALARY <=300000 THEN '초급'
+			WHEN SALARY <=400000 THEN '중급'
+			ELSE '고급' END AS 구분
+```
+
+
+
+## 그룹 함수
+
+### SUM
+
+- 총합 계산
+
+### AVG
+
+- 평균 계산
+- NULL을 제외하므로 결과가 달라질 수 있음
+
+### MIN
+
+- 최소 값 반환
+- DATE 타입 : 가장 오래 전 날짜를 의미
+- CHARACTER 타입 : 해당 character set의 내부 값이 가장 작은 문자를 의미 
+
+### MAX 
+
+- 최대 값 반환
+- DATE 타입 : 가장 최근 날짜를 의미 
+- CHARACTER 타입 : 해당 character set의 내부 값이 가장 큰 문자를 의미
+
+### COUNT 
+
+- Result Set 전체 행 수 반환
+
+
+```sql
+SUM/AVG/MAX/MIN(SALARY)
+COUNT(*) -- Result Set의 전체 행 수 반환
+COUNT(DISTINCT expr) -- NULL과 중복 값을 제외한 행 수 반환
+COUNT(expr) -- expr에 포함된 값 중 NULL을 제외한 행 수 반환
+```
 
