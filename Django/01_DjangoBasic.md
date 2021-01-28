@@ -1,4 +1,4 @@
-# Django 시작
+# Django Basic
 
 > Django 기본 옵션에 대한 설명
 
@@ -32,7 +32,8 @@ terminal 에 명령어 입력
 
 - `django-admin startproject baseWeb`
 - `cd (프로젝트명)`
-- `dir/w`  manage.py 존재해야 함
+- `dir/w` 
+  - manage.py 존재해야 함
 
 ### settings.py 
 
@@ -40,13 +41,33 @@ terminal 에 명령어 입력
 
 `TIME_ZONE = 'Asia/Seoul'`
 
-앱 추가
-
-- `INSTALLED_APPS = ['HelloApp']` 추가
-
-
-
-서버실행 명령어 
+- 앱 추가시
+  -  `INSTALLED_APPS = ['HelloApp']`  추가
 
 
 
+### 서버실행 명령어
+
+#### 서버실행
+
+`python manage.py runserver`
+
+#### 종료
+
+`ctrl + c`
+
+
+
+### web directory 설정
+
+#### urls.py
+
+`from django.urls import path, include`    - include 추가
+
+```python
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('front/', include('frontApp.urls')), # 앱 추가
+    path('bbs/', include('bbsApp.urls')), # 앱 추가
+]
+```
