@@ -61,7 +61,9 @@ AND SALARY > ( SELECT SALARY
 
 
 
-### 단일행 서브쿼리(= > >= <= <>)
+### 단일행 서브쿼리
+
+- (`=` `>=` `<=` `<` `>` )
 
 ```SQL
 SELECT EMP_NAME, JOB_ID, SALARY 
@@ -72,4 +74,66 @@ WHERE SALARY = (SELECT MIN(SALARY)
 
 
 
-### 
+### 다중행 서브쿼리
+
+#### IN, NOT IN
+
+- NOT IN 을 다중행 서브쿼리에서 사용시 결과에 NULL이 포함되면 전체 결과가 NULL이 됨
+  - 서브쿼리 결과에서는 NULL인 경우를 제외해야함
+
+```sql
+WHERE EMP_ID IN (SELECT MGR_ID FROM EMPLOYEEE)
+WHERE EMP_ID NOT IN (SELECT MGR_ID FROM EMPLOYEE
+                WHERE MGR_ID IS NOT NULL)
+```
+
+#### ANY 연산자
+
+- `< ANY`  : 비교 대상 중 최대 값 보다 작음
+- `> ANY`  : 비교 대상 중 최소 값 보다 큼
+- `= ANY`  : IN 연산자와 동일
+
+#### ALL 연산자
+
+- `< ALL`  : 비교 대상 중 최소 값보다 작음
+- `> ALL`  : 비교 대상 중 최대 값보다 큼
+
+
+
+## IF ~ ELSE
+
+IF ~ ELSE 구문을 수행하는 SQL 함수
+
+### CASE ~ END
+
+WHEN -- IN -- THEN -- ELSE
+
+```SQL
+CASE WHEN EMP_ID IN (SELECT MGR_ID FROM EMPLOYEE) THEN '관리자' ELSE '직원' END
+```
+
+### DECODE
+
+```SQL
+DECODE(MGR_ID, NULL, '관리자','사원')
+```
+
+
+
+## EXISTS, NOT EXISTS
+
+- 존재 여부에 따라 TRUE 값을 반환
+- 존재 여부를 확인하는 목적이므로 서브쿼리에서 특정 값을 조회할 필요가 없음
+
+```SQL
+SELECT EMP_ID,
+	   EMP_NAME,
+	   '관리자' AS 구분
+FROM EMPLOYEE E
+WHERE (EXISTS/NOT EXISTS) (SELECT NULL
+                           FROM EMPLOYEE
+                           WHERE E.EMP_ID = MGR_ID)
+```
+
+
+
