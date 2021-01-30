@@ -63,5 +63,3 @@ emp01 = Emp("sjlim",49,"edu")
 print(emp01.name, emp01.age, emp01.dept)
 ```
 
-### 
-
